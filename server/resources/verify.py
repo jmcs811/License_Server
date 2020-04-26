@@ -6,11 +6,14 @@ from common.utils import checkInfo
 class Verify(Resource):
     def post(self):
         # convert string to json
+        print(request.data.decode())
         json_data = eval(request.data.decode()[:-1])
+        
         if not request.is_json:
             return jsonify({"msg":"Missing JSON in request"})
 
         user_secret = json_data.get('secret', None)
+        print(user_secret)
         user_key = json_data.get('key', None)
         user_hwid = json_data.get('hwid', None)
 
